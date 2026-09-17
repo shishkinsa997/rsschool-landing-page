@@ -1,0 +1,137 @@
+@use "_variables.scss" as v;
+@use "_mixins.scss" as *;
+
+.header {
+  @include container;
+  @include flex-center;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  .header-inner {
+    @include flex-between;
+    gap: 0.75rem;
+    height: 3.75rem;
+    width: 100%;
+    margin-bottom: 1.25rem;
+  }
+
+  .logo-wrapper {
+    @include flex-between;
+  }
+
+  .logo {
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav {
+    flex: 1;
+  }
+
+  .nav ul {
+    @include flex-center;
+    gap: 2.5rem;
+
+    a {
+      @include link;
+      transition:
+        color 0.2s ease-in-out,
+        background-color 0.2s ease-in-out;
+
+      @include hover {
+        // color: v.$primary;
+        // background-color: v.$primary-10;
+      }
+    }
+  }
+
+  label {
+    display: none;
+    cursor: pointer;
+  }
+
+  #burger-toggle {
+    display: none;
+  }
+}
+
+.theme-toggle {
+  padding: 0.5rem;
+  .theme-input {
+    opacity: 0;
+    position: absolute;
+  }
+
+  .theme-label {
+    @include flex-between;
+    width: 100%;
+    height: 44px;
+    border-radius: 100px;
+    border: 0.1rem solid v.$border;
+    position: relative;
+    padding: 0.25rem;
+    gap: 0.5rem;
+    cursor: pointer;
+
+    div {
+      @include flex-center;
+      border-radius: 100%;
+      width: 2.25rem;
+      aspect-ratio: 1/1;
+      transition: background-color 0.2s ease-in-out;
+
+      svg {
+        margin: auto;
+      }
+    }
+
+    .theme-moon {
+      @include theme(background, #00000000, v.$accent-dark);
+      @media (hover: hover) and (min-width: 769px) {
+        &:hover {
+          background-color: v.$border-dark;
+
+          & svg path {
+            fill: v.$inverse;
+          }
+        }
+      }
+
+      svg path {
+        @include theme(fill, v.$primary, v.$inverse-dark);
+        transition: fill 0.2s ease-in-out;
+      }
+    }
+
+    .theme-sun {
+      @include theme(background, v.$accent, #00000000);
+      @media (hover: hover) and (min-width: 769px) {
+        &:hover {
+          @include theme(background, v.$accent, v.$border-inverse-dark);
+
+          & svg path {
+            @include theme(fill, #00000000, v.$primary);
+            fill: v.$inverse;
+          }
+        }
+      }
+
+      svg path {
+        // @include theme(fill, v.$inverse, v.$primary-dark);
+        transition: fill 0.2s ease-in-out;
+      }
+    }
+  }
+}
+
+.menu {
+  @include flex-center;
+  @include link;
+  gap: 0.25rem;
+
+  svg path {
+    @include theme(stroke, v.$primary, v.$primary-dark);
+  }
+}
