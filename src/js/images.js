@@ -1,4 +1,4 @@
-const images = import.meta.glob("../assets/img/*.{jpg,png,webp}", {
+const images = import.meta.glob("../assets/images/*.{jpg,png,webp}", {
   eager: true,
 });
 const icons = import.meta.glob("../assets/icons/*.svg", { eager: true });
