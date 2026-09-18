@@ -1,0 +1,66 @@
+@use "_variables.scss" as v;
+@use "_mixins.scss" as *;
+
+#hero {
+  width: 100%;
+
+  .hero-inner {
+    @include flex-column;
+    width: 100%;
+    align-items: start;
+    text-align: left;
+    border-radius: 2.5rem;
+    background: url("../assets/images/img-hero.jpg") center/cover no-repeat;
+    gap: 0.75rem;
+    padding: 6.25rem 5.25rem;
+    text-align: left;
+    color: v.$inverse;
+
+    .offer {
+      @include flex-column;
+      align-items: start;
+      gap: 2.5rem;
+      max-width: 33.125rem;
+    }
+
+    .hero-subtext {
+      @include medium;
+      text-align: left;
+    }
+
+    .h1 {
+      @include h1;
+      text-align: left;
+
+      span {
+        @include italic;
+        color: v.$accent;
+      }
+    }
+
+    .hero-button {
+      @include flex-center;
+      @include link;
+      gap: 0.5rem;
+      background-color: v.$page;
+      border-radius: 8rem;
+      color: v.$primary;
+      width: 100%;
+      max-width: 12.5rem;
+      padding: 1.25rem 4.875rem;
+      text-align: center;
+
+      span {
+        @include flex-center;
+        width: 0;
+        transition: width 0.2s;
+      }
+
+      @include hover {
+        span {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
