@@ -1,0 +1,54 @@
+@use "_variables.scss" as v;
+@use "_mixins.scss" as *;
+
+#about {
+  width: 100%;
+
+  .about-inner {
+    @include flex-column;
+    gap: 2.5rem;
+    width: 100%;
+
+    .h2 {
+      @include h2;
+      text-align: left;
+
+      span {
+        @include italic;
+        color: v.$accent;
+      }
+    }
+
+    .gallery {
+      @include flex-between;
+      gap: 2.5rem;
+
+      .column {
+        @include flex-column;
+        gap: 2.5rem;
+
+        .about2,
+        .about3 {
+          max-height: 26.9rem;
+        }
+
+        .image-box {
+          border-radius: 1.25rem;
+          overflow: hidden;
+          width: 100%;
+        }
+
+        img {
+          scale: 110%;
+          object-fit: cover;
+          width: 100%;
+          transition: scale 0.2s ease;
+
+          @include hover {
+            scale: 100%;
+          }
+        }
+      }
+    }
+  }
+}
