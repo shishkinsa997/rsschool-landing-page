@@ -49,16 +49,14 @@ function renderHeader() {
   themeInput.classList.add("theme-input");
   menu.classList.add("menu");
 
-  logoWrapper.innerHTML = `
-    <img src="${logo}" alt="logo" class="logo"/>`;
-  liFav.innerHTML = `<a href="#fav">Favorite coffee</a>`;
-  liAbout.innerHTML = `<a href="#about">About</a>`;
-  liMobile.innerHTML = `<a href="#mobile">Mobile app</a>`;
+  liFav.innerHTML = `<a href="./#favorite">Favorite coffee</a>`;
+  liAbout.innerHTML = `<a href="./#about">About</a>`;
+  liMobile.innerHTML = `<a href="./#mobile">Mobile app</a>`;
   liContacts.innerHTML = `<a href="#contacts">Contacts</a>`;
 
-  logoWrapper.setAttribute("href", "/");
+  logoWrapper.setAttribute("href", "./");
   logoWrapper.setAttribute("data-link", "home");
-  menu.setAttribute("href", "/menu");
+  menu.setAttribute("href", "./menu");
   menu.setAttribute("data-link", "menu");
 
   navUl.append(liFav, liAbout, liMobile, liContacts);
@@ -102,16 +100,38 @@ function renderHeader() {
     });
   });
 
+  if (!localStorage.getItem("theme")) {
+    localStorage.setItem(
+      "theme",
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light",
+    );
+  }
+
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    logoWrapper.innerHTML = `
+      <img src="${logoDark}" alt="logo" class="logo"/>`;
+  } else {
+    logoWrapper.innerHTML = `
+      <img src="${logo}" alt="logo" class="logo"/>`;
+  }
+
   themeInput.addEventListener("change", () => {
     document.body.classList.toggle("dark");
     if (document.body.classList.contains("dark")) {
       logoWrapper.innerHTML = `
     <img src="${logoDark}" alt="logo" class="logo"/>`;
+      localStorage.setItem("theme", "dark");
     } else {
       logoWrapper.innerHTML = `
     <img src="${logo}" alt="logo" class="logo"/>`;
+      localStorage.setItem("theme", "light");
     }
+    console.log("theme:", localStorage.getItem("theme"));
   });
+  console.log("theme:", localStorage.getItem("theme"));
 
   return header;
 }

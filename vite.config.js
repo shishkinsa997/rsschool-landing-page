@@ -3,6 +3,7 @@ import path from "path";
 import { resolve } from "path";
 
 export default defineConfig({
+  base: "/rsschool-landing-page/",
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "./src"),
@@ -20,7 +21,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(import.meta.dirname, "index.html"),
-        // catalog: path.resolve(import.meta.dirname, "catalog.html"),
+        menu: path.resolve(import.meta.dirname, "menu.html"),
       },
     },
   },

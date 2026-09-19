@@ -1,5 +1,4 @@
 import "../../styles/hero.scss";
-import { iconPaths } from "../images";
 
 export function renderHero() {
   const hero = document.createElement("section");
@@ -18,7 +17,7 @@ export function renderHero() {
       <div class="offer">
         <h1 class="h1"><span>Enjoy</span> premium coffee at our charming cafe</h1>
         <p class="hero-subtext">With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.</p>
-        <a class="hero-button" href="/menu">Menu<span>${cup}</span></a>
+        <a class="hero-button" href="./menu">Menu<span>${cup}</span></a>
       </div>
     </div>
   `;
