@@ -31,6 +31,9 @@
     .h1 {
       @include h1;
       text-align: left;
+      @include mobile-l {
+        @include h1-mobile;
+      }
 
       span {
         @include italic;
@@ -54,6 +57,10 @@
         @include flex-center;
         width: 0;
         transition: width 0.2s ease;
+
+        @include tablet-l {
+          width: 100%;
+        }
       }
 
       @include theme(background, v.$page, v.$page-dark);
@@ -68,6 +75,10 @@
           width: 50%;
         }
       }
+    }
+
+    @include mobile-l {
+      padding: 3.75rem 1rem;
     }
   }
 }

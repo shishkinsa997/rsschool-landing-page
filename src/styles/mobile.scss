@@ -25,6 +25,10 @@
       @include h2;
       text-align: left;
 
+      @include mobile-l {
+        @include h2-mobile;
+      }
+
       span {
         @include italic;
         color: v.$accent;
@@ -35,6 +39,11 @@
       @include flex-center;
       align-items: start;
       gap: 1.25rem;
+
+      @include mobile-l {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
     }
 
     .mobile-button {
@@ -84,6 +93,21 @@
         path {
           fill: v.$inverse;
         }
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  @include laptop-l {
+    .mobile-inner {
+      flex-direction: column;
+      gap: 2.5rem;
+
+      .offer {
+        max-width: 100%;
       }
     }
   }

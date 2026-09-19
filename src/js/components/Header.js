@@ -37,6 +37,7 @@ function renderHeader() {
   burgerToggle.id = "burger-toggle";
   burgerToggle.type = "checkbox";
   burgerLabel.setAttribute("for", "burger-toggle");
+  burgerLabel.classList.add("burger-label");
 
   header.classList.add("header");
   headerInner.classList.add("header-inner");
@@ -60,8 +61,8 @@ function renderHeader() {
   menu.setAttribute("data-link", "menu");
 
   navUl.append(liFav, liAbout, liMobile, liContacts);
-  nav.append(burgerToggle, burgerLabel, navUl);
-  headerInner.append(logoWrapper, nav, theme, menu);
+  nav.append(burgerToggle, burgerLabel, navUl, theme, menu);
+  headerInner.append(logoWrapper, nav);
   header.append(headerInner);
 
   themeInput.type = "checkbox";

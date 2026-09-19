@@ -10,7 +10,7 @@
   z-index: 10;
 
   .header-inner {
-    @include flex-between;
+    display: flex;
     gap: 0.75rem;
     height: 3.75rem;
     width: 100%;
@@ -26,33 +26,172 @@
   }
 
   .nav {
-    flex: 1;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 0.75rem;
+    height: 3.75rem;
+    width: 100%;
 
-  .nav ul {
-    @include flex-center;
-    gap: 2.5rem;
-
-    a {
+    ul {
+      @include flex-center;
+      gap: 2.5rem;
+      flex: 1;
       @include link;
-      transition:
-        color 0.2s ease-in-out,
-        background-color 0.2s ease-in-out;
 
-      @include hover {
-        // color: v.$primary;
-        // background-color: v.$primary-10;
+      a {
+        transition:
+          color 0.2s ease-in-out,
+          background-color 0.2s ease-in-out;
+
+        @include hover {
+          // color: v.$primary;
+          // background-color: v.$primary-10;
+        }
       }
     }
-  }
 
-  label {
-    display: none;
-    cursor: pointer;
-  }
+    .burger-label {
+      order: 1;
+      display: none;
+      cursor: pointer;
+    }
 
-  #burger-toggle {
-    display: none;
+    #burger-toggle {
+      display: none;
+    }
+
+    .menu {
+      @include flex-center;
+      @include link;
+      gap: 0.5rem;
+
+      svg path {
+        @include theme(stroke, v.$primary, v.$primary-dark);
+      }
+    }
+
+    @include tablet-l {
+      .burger-label {
+        position: relative;
+        display: block;
+        height: 2.75rem;
+        width: 2.75rem;
+        border-radius: 100%;
+        @include theme(
+          border,
+          0.1rem solid v.$border-inverse,
+          0.1rem solid v.$border-inverse-dark
+        );
+      }
+
+      .burger-label::after,
+      .burger-label::before {
+        position: absolute;
+        width: 50%;
+        height: 0.1rem;
+        left: 50%;
+        transition: 0.5s;
+        border-radius: 1rem;
+        @include theme(background-color, v.$primary, v.$primary-dark);
+      }
+
+      .burger-label::before {
+        content: "";
+        top: 1rem;
+        transform: translateX(-50%);
+      }
+
+      .burger-label::after {
+        content: "";
+        bottom: 1rem;
+        transform: translateX(-50%);
+      }
+
+      #burger-toggle:checked ~ .burger-label::after {
+        bottom: 50%;
+        transform: translate(-50%, 50%) rotate(-405deg);
+      }
+
+      #burger-toggle:checked ~ .burger-label::before {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(405deg);
+      }
+
+      ul {
+        @include burger;
+        position: fixed;
+        visibility: hidden;
+        gap: 3.75rem;
+        top: 0;
+        right: -100dvw;
+        z-index: -1;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        width: 100dvw;
+        height: calc(100dvh - 6.25rem);
+        padding-bottom: 50%;
+        margin-top: 6.25rem;
+        transition:
+          right 0.5s ease-in-out,
+          visibility 0s linear 0.5s;
+        @include theme(background-color, v.$page, v.$page-dark);
+
+        &::before {
+          position: fixed;
+          content: "";
+          right: -100dvw;
+          top: 0;
+          z-index: -1;
+          height: 100dvh;
+          width: 100dvw;
+          transition:
+            right 0.5s ease-in-out,
+            visibility 0s linear;
+        }
+      }
+
+      .menu {
+        @include burger;
+        position: fixed;
+        visibility: hidden;
+        top: 0;
+        right: -100dvw;
+        z-index: -1;
+        justify-content: center;
+        text-align: center;
+        width: 100dvw;
+        height: calc(100dvh - 6.25rem);
+        margin-top: 6.25rem;
+        padding-top: 30%;
+        transition:
+          right 0.5s ease-in-out,
+          visibility 0s linear 0.5s;
+
+        svg {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+      }
+
+      #burger-toggle:checked ~ ul,
+      #burger-toggle:checked ~ .menu {
+        visibility: visible;
+        right: 0;
+        transition:
+          right 0.5s ease-in-out,
+          visibility 0s linear;
+      }
+
+      #burger-toggle:checked ~ ul::before {
+        visibility: visible;
+        right: 0;
+        transition:
+          right 0.5s ease-in-out,
+          visibility 0s linear;
+      }
+    }
   }
 }
 
@@ -118,19 +257,8 @@
       }
 
       svg path {
-        // @include theme(fill, v.$inverse, v.$primary-dark);
         transition: fill 0.2s ease-in-out;
       }
     }
-  }
-}
-
-.menu {
-  @include flex-center;
-  @include link;
-  gap: 0.25rem;
-
-  svg path {
-    @include theme(stroke, v.$primary, v.$primary-dark);
   }
 }

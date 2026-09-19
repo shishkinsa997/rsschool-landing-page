@@ -26,11 +26,18 @@
 
       .offer__title1 {
         @include h2;
+        @include mobile-l {
+          @include h2-mobile;
+        }
       }
+
       .offer__title2 {
         @include h2;
         @include italic;
         color: v.$accent;
+        @include mobile-l {
+          @include h2-mobile;
+        }
       }
 
       .socials {
@@ -86,6 +93,18 @@
           gap: 0.25rem;
         }
       }
+    }
+
+    @include tablet-l {
+      flex-direction: column;
+      padding: 6.25rem 3.75rem;
+      gap: 3.125rem;
+    }
+
+    @include mobile-l {
+      flex-direction: column;
+      padding: 3.75rem 1rem;
+      gap: 2.5rem;
     }
   }
 }

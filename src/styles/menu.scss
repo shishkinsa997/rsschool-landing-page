@@ -11,6 +11,9 @@
 
     .h2 {
       @include h2;
+      @include mobile-l {
+        @include h2-mobile;
+      }
 
       span {
         @include italic;
@@ -109,9 +112,11 @@
           border-radius: 2.5rem;
           overflow: hidden;
           aspect-ratio: 1/1;
+          width: 100%;
 
           img {
             object-fit: cover;
+            width: 100%;
             scale: 110%;
             transition: scale 0.2s ease-in-out;
           }
@@ -137,6 +142,24 @@
             scale: 100%;
           }
         }
+      }
+    }
+
+    @include laptop-l {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @include laptop {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @include tablet {
+      .grid {
+        grid-template-columns: repeat(1, 1fr);
       }
     }
   }

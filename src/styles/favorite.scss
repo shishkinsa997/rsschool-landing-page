@@ -11,7 +11,10 @@
 
     .h2 {
       @include h2;
-      text-align: left;
+      text-align: center;
+      @include mobile-l {
+        @include h2-mobile;
+      }
 
       span {
         @include italic;
@@ -63,7 +66,7 @@
         }
 
         .row {
-          display: flex;
+          @include flex-center;
           position: relative;
           max-width: 1152px;
           height: 100%;
@@ -123,6 +126,23 @@
             v.$border-inverse,
             v.$border-inverse-dark
           );
+        }
+      }
+
+      @include tablet {
+        .slide,
+        .content,
+        img {
+          max-width: 23rem !important;
+        }
+      }
+
+      @include mobile-l {
+        .arrow {
+          display: none !important;
+        }
+        .slider-inner {
+          @include flex-center;
         }
       }
     }

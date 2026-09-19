@@ -12,6 +12,9 @@
     .h2 {
       @include h2;
       text-align: left;
+      @include mobile-l {
+        @include h2-mobile;
+      }
 
       span {
         @include italic;
@@ -27,9 +30,14 @@
         @include flex-column;
         gap: 2.5rem;
 
-        .about2,
-        .about3 {
+        .about2 > img,
+        .about3 > img {
           max-height: 26.9rem;
+        }
+
+        .about1 > img,
+        .about4 > img {
+          height: 36.9rem;
         }
 
         .image-box {
@@ -48,6 +56,22 @@
             scale: 100%;
           }
         }
+      }
+    }
+  }
+
+  @include tablet-l {
+    .gallery {
+      flex-direction: column;
+      gap: 2.5rem;
+
+      .column {
+        width: 100%;
+      }
+
+      .about2,
+      .about3 {
+        display: none;
       }
     }
   }

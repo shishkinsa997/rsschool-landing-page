@@ -11,19 +11,19 @@ export function renderAbout() {
       <h2 class="h2">Resource is <span>the perfect and cozy place</span> where you can enjoy a variety of hot beverages, relax, catch up with friends, or get some work done.</h1>
       <div class='gallery'>
         <div class="column">
-          <div class="image-box">
-            <img class="about1" src="${imagePaths["about-1"]}" alt="about-1">
+          <div class="image-box about1">
+            <img src="${imagePaths["about-1"]}" alt="about-1">
           </div>
-          <div class="image-box">
-            <img class="about2" src="${imagePaths["about-2"]}" alt="about-2">
+          <div class="image-box about2">
+            <img src="${imagePaths["about-2"]}" alt="about-2">
           </div>
         </div>
         <div class="column">
-          <div class="image-box">
-            <img class="about3" src="${imagePaths["about-3"]}" alt="about-3">
+          <div class="image-box about3">
+            <img src="${imagePaths["about-3"]}" alt="about-3">
           </div>
-          <div class="image-box">
-            <img class="about4" src="${imagePaths["about-4"]}" alt="about-4">
+          <div class="image-box about4">
+            <img src="${imagePaths["about-4"]}" alt="about-4">
           </div>
         </div>
       </div>
