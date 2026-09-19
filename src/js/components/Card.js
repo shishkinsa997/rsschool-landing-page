@@ -13,7 +13,7 @@ export function renderCard(data, index) {
   cardImage.src = imagePaths[data.category + "-" + index];
 
   cardImageWrapper.classList.add("card-image");
-  cardImage.alt = data.category;
+  cardImage.alt = data.name;
 
   cardTitle.classList.add("h3");
   cardTitle.textContent = data.name;

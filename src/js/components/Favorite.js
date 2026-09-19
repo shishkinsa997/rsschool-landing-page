@@ -44,7 +44,7 @@ export function renderFavorite() {
     slide.classList.add("slide");
     slide.innerHTML = `
     <div class="content">
-      <img src="${imagePaths[s.img]}" alt=${s.img}>
+      <img src="${imagePaths[s.img]}" alt="${s.name}">
       <div class='slide-info'>
         <h3 class="h3">${s.name}</h3>
         <p class="slider-text">${s.desc}</p>

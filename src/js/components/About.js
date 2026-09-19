@@ -12,18 +12,18 @@ export function renderAbout() {
       <div class='gallery'>
         <div class="column">
           <div class="image-box about1">
-            <img src="${imagePaths["about-1"]}" alt="about-1">
+            <img src="${imagePaths["about-1"]}" alt="">
           </div>
           <div class="image-box about2">
-            <img src="${imagePaths["about-2"]}" alt="about-2">
+            <img src="${imagePaths["about-2"]}" alt="">
           </div>
         </div>
         <div class="column">
           <div class="image-box about3">
-            <img src="${imagePaths["about-3"]}" alt="about-3">
+            <img src="${imagePaths["about-3"]}" alt="">
           </div>
           <div class="image-box about4">
-            <img src="${imagePaths["about-4"]}" alt="about-4">
+            <img src="${imagePaths["about-4"]}" alt="">
           </div>
         </div>
       </div>
