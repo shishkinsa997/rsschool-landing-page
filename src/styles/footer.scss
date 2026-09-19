@@ -14,6 +14,7 @@
     color: v.$inverse;
     width: 100%;
     gap: 6.25rem;
+    @include theme(background-color, v.$container, v.$container-dark);
 
     .offer {
       @include flex-column;
@@ -39,10 +40,20 @@
         a {
           @include flex-center;
           align-items: center;
-          border: 0.07rem v.$border solid;
+          border: 0.1rem v.$border solid;
           border-radius: 100%;
           width: 3.75rem;
           height: 3.75rem;
+          transition: background-color 0.2s ease-in-out;
+          @include theme(
+            border,
+            0.1rem v.$border solid,
+            0.1rem v.$border-dark solid
+          );
+
+          @include hover {
+            background-color: v.$page-dark;
+          }
         }
 
         img {

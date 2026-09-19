@@ -1,4 +1,3 @@
-// import '../../styles/card.scss';
 import { imagePaths } from "../images";
 
 export function renderCard(data, index) {

@@ -36,6 +36,30 @@
           border: 0.1rem solid v.$border-inverse;
           border-radius: 8rem;
           box-sizing: border-box;
+          transition: all 0.2s ease-in-out;
+
+          @include theme(
+            border,
+            0.1rem solid v.$border-inverse,
+            0.1rem solid v.$border-inverse-dark
+          );
+
+          path {
+            @include theme(stroke, v.$primary, v.$primary-dark);
+          }
+
+          @include hover {
+            background-color: v.$container;
+            @include theme(
+              border,
+              1rem solid v.$container,
+              1rem solid v.$container-dark
+            );
+            @include theme(background-color, v.$container, v.$container-dark);
+            path {
+              stroke: v.$inverse;
+            }
+          }
         }
 
         .row {
@@ -90,10 +114,15 @@
           height: 0.25rem;
           background-color: v.$border;
           border-radius: 1rem;
+          @include theme(background-color, v.$border, v.$border-dark);
         }
 
         .active {
-          background-color: v.$border-inverse;
+          @include theme(
+            background-color,
+            v.$border-inverse,
+            v.$border-inverse-dark
+          );
         }
       }
     }

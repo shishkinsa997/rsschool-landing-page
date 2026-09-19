@@ -53,7 +53,14 @@
       span {
         @include flex-center;
         width: 0;
-        transition: width 0.2s;
+        transition: width 0.2s ease;
+      }
+
+      @include theme(background, v.$page, v.$page-dark);
+      @include theme(color, v.$primary, v.$primary-dark);
+
+      path {
+        @include theme(stroke, v.$primary, v.$primary-dark);
       }
 
       @include hover {

@@ -34,11 +34,16 @@
           gap: 0.5rem;
           padding: 0.5rem 1rem 0.5rem 0.5rem;
           border-radius: 8rem;
-          border: 0.1rem solid v.$border;
           cursor: pointer;
           transition:
             background-color 0.2s ease-in-out,
-            color 0.2s ease-in-out;
+            color 0.2s ease-in-out,
+            border 0.2s ease-in-out;
+          @include theme(
+            border,
+            0.1rem solid v.$border,
+            0.1rem solid v.$border-dark
+          );
 
           img {
             width: 1.9rem;
@@ -46,14 +51,21 @@
             aspect-ratio: 1/1;
             background-color: v.$border;
             border-radius: 100%;
+            transition: background-color 0.2s ease-in-out;
+            @include theme(background-color, v.$border, v.$border-dark);
           }
 
           @include hover {
-            background-color: v.$container;
+            @include theme(background-color, v.$container, v.$container-dark);
+            @include theme(
+              border,
+              0.1rem solid v.$container,
+              0.1rem solid v.$container-dark
+            );
             color: v.$inverse;
 
             img {
-              background-color: v.$page;
+              @include theme(background-color, v.$page, v.$page-dark);
             }
           }
         }
@@ -61,9 +73,15 @@
         .active {
           background-color: v.$container;
           color: v.$inverse;
+          @include theme(background-color, v.$container, v.$container-dark);
+          @include theme(
+            border,
+            0.1rem solid v.$container,
+            0.1rem solid v.$container-dark
+          );
 
           img {
-            background-color: v.$page;
+            @include theme(background-color, v.$page, v.$page-dark);
           }
         }
       }
@@ -80,8 +98,12 @@
         justify-content: space-between;
         width: 100%;
         border-radius: 2.5rem;
-        border: 0.1rem solid v.$border;
         overflow: hidden;
+        @include theme(
+          border,
+          0.1rem solid v.$border,
+          0.1rem solid v.$border-dark
+        );
 
         .card-image {
           border-radius: 2.5rem;

@@ -28,6 +28,12 @@ body.dark {
   color: v.$primary-dark;
 }
 
+main {
+  @include flex-column;
+  gap: 6.25rem;
+  margin: 1.25rem 0 6.25rem;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -47,5 +53,4 @@ li {
   @include container;
   @include flex-center;
   position: relative;
-  padding: 0 2.5rem;
 }
