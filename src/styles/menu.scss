@@ -1,0 +1,121 @@
+@use "_variables.scss" as v;
+@use "_mixins.scss" as *;
+
+#menu {
+  width: 100%;
+
+  .menu-inner {
+    @include flex-column;
+    gap: 2.5rem;
+    width: 100%;
+
+    .h2 {
+      @include h2;
+
+      span {
+        @include italic;
+        color: v.$accent;
+      }
+    }
+
+    .offer {
+      @include flex-column;
+      text-align: center;
+      gap: 2.5rem;
+      max-width: 50rem;
+
+      .tabs {
+        @include flex-center;
+        gap: 1rem;
+
+        .tab {
+          @include flex-center;
+          @include link;
+          gap: 0.5rem;
+          padding: 0.5rem 1rem 0.5rem 0.5rem;
+          border-radius: 8rem;
+          border: 0.1rem solid v.$border;
+          cursor: pointer;
+          transition:
+            background-color 0.2s ease-in-out,
+            color 0.2s ease-in-out;
+
+          img {
+            width: 1.9rem;
+            padding: 0.4rem;
+            aspect-ratio: 1/1;
+            background-color: v.$border;
+            border-radius: 100%;
+          }
+
+          @include hover {
+            background-color: v.$container;
+            color: v.$inverse;
+
+            img {
+              background-color: v.$page;
+            }
+          }
+        }
+
+        .active {
+          background-color: v.$container;
+          color: v.$inverse;
+
+          img {
+            background-color: v.$page;
+          }
+        }
+      }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.5rem;
+
+      .card {
+        @include flex-column;
+        align-items: start;
+        justify-content: space-between;
+        width: 100%;
+        border-radius: 2.5rem;
+        border: 0.1rem solid v.$border;
+        overflow: hidden;
+
+        .card-image {
+          border-radius: 2.5rem;
+          overflow: hidden;
+          aspect-ratio: 1/1;
+
+          img {
+            object-fit: cover;
+            scale: 110%;
+            transition: scale 0.2s ease-in-out;
+          }
+        }
+
+        .card-text {
+          @include flex-column;
+          align-items: start;
+          gap: 0.75rem;
+          padding: 1.25rem;
+
+          .h3 {
+            @include h3;
+          }
+
+          .card-description {
+            @include medium;
+          }
+        }
+
+        @include hover {
+          img {
+            scale: 100%;
+          }
+        }
+      }
+    }
+  }
+}
