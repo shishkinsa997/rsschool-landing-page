@@ -145,6 +145,41 @@
       }
     }
 
+    .refresh {
+      @include flex-center;
+      display: none;
+      box-sizing: border-box;
+      width: 3.9rem;
+      aspect-ratio: 1/1;
+      border-radius: 100%;
+      transition:
+        border 0.2s ease-in-out,
+        background-color 0.2s ease-in-out;
+
+      @include theme(
+        border,
+        0.1rem solid v.$border-inverse,
+        0.1rem solid v.$border-inverse-dark
+      );
+
+      path {
+        @include theme(stroke, v.$primary, v.$primary-dark);
+      }
+
+      @include hover {
+        background-color: v.$container;
+        @include theme(border, v.$container, v.$container-dark);
+        @include theme(background-color, v.$container, v.$container-dark);
+        path {
+          stroke: v.$inverse;
+        }
+      }
+
+      @include laptop {
+        display: flex;
+      }
+    }
+
     @include laptop-l {
       .grid {
         grid-template-columns: repeat(3, 1fr);

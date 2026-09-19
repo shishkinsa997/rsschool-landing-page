@@ -127,12 +127,12 @@
         right: -100dvw;
         z-index: -1;
         flex-direction: column;
-        justify-content: center;
+        justify-content: start;
         text-align: center;
         width: 100dvw;
         height: calc(100dvh - 6.25rem);
-        padding-bottom: 50%;
         margin-top: 6.25rem;
+        padding-top: 10dvh;
         transition:
           right 0.5s ease-in-out,
           visibility 0s linear 0.5s;
@@ -160,11 +160,11 @@
         right: -100dvw;
         z-index: -1;
         justify-content: center;
-        text-align: center;
+        text-align: start;
         width: 100dvw;
-        height: calc(100dvh - 6.25rem);
-        margin-top: 6.25rem;
-        padding-top: 30%;
+        margin-top: 33.75rem;
+        padding-top: 10dvh;
+
         transition:
           right 0.5s ease-in-out,
           visibility 0s linear 0.5s;
