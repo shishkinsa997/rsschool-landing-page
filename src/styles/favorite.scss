@@ -91,6 +91,20 @@
                 gap: 1rem;
               }
             }
+
+            @include tablet {
+              .content,
+              .content img {
+                max-width: 23rem;
+              }
+            }
+
+            @include mobile-l {
+              .content,
+              .content img {
+                max-width: 20rem;
+              }
+            }
           }
 
           & > *:first-child {
@@ -126,14 +140,6 @@
             v.$border-inverse,
             v.$border-inverse-dark
           );
-        }
-      }
-
-      @include tablet {
-        .slide,
-        .content,
-        img {
-          max-width: 23rem !important;
         }
       }
 

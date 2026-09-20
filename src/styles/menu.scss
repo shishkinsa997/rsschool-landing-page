@@ -87,6 +87,10 @@
             @include theme(background-color, v.$page, v.$page-dark);
           }
         }
+
+        @include mobile-l {
+          gap: 0.5rem;
+        }
       }
     }
 
