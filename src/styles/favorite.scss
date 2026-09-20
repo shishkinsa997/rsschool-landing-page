@@ -1,0 +1,229 @@
+@use "_variables.scss" as v;
+@use "_mixins.scss" as *;
+
+#favorite {
+  width: 100%;
+
+  .favorite-inner {
+    @include flex-column;
+    width: 100%;
+    gap: 2.5rem;
+
+    .h2 {
+      @include h2;
+      text-align: center;
+      @include mobile-l {
+        @include h2-mobile;
+      }
+
+      span {
+        @include italic;
+        color: v.$accent;
+      }
+    }
+
+    .slider {
+      @include flex-column;
+      width: 100%;
+      gap: 2.5rem;
+
+      .slider-inner {
+        @include flex-between;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        gap: 2.5rem;
+        height: 640px;
+
+        .arrow {
+          @include flex-center;
+          min-width: 3.75rem;
+          aspect-ratio: 1/1;
+          border: 0.1rem solid v.$border-inverse;
+          border-radius: 8rem;
+          box-sizing: border-box;
+          transition: all 0.2s ease-in-out;
+
+          @include theme(
+            border,
+            0.1rem solid v.$border-inverse,
+            0.1rem solid v.$border-inverse-dark
+          );
+
+          path {
+            @include theme(stroke, v.$primary, v.$primary-dark);
+          }
+
+          @include hover {
+            background-color: v.$container;
+            @include theme(
+              border,
+              1rem solid v.$container,
+              1rem solid v.$container-dark
+            );
+            @include theme(background-color, v.$container, v.$container-dark);
+            path {
+              stroke: v.$inverse;
+            }
+          }
+        }
+
+        .row {
+          @include flex-center;
+          justify-content: start;
+          position: relative;
+          max-width: 1152px;
+          width: 100%;
+          height: 100%;
+          gap: 30rem;
+
+          .slide {
+            @include flex-center;
+            position: absolute;
+            height: 100%;
+            min-width: 100%;
+            opacity: 0;
+
+            .content {
+              @include flex-column;
+              gap: 1.25rem;
+              max-width: 30rem;
+
+              img {
+                max-width: 30rem;
+              }
+
+              .slide-info {
+                @include flex-column;
+                gap: 1rem;
+              }
+            }
+
+            @include tablet {
+              .content,
+              .content img {
+                max-width: 23rem;
+              }
+            }
+
+            @include mobile-l {
+              .content,
+              .content img {
+                max-width: 20rem;
+              }
+            }
+          }
+
+          .active {
+            opacity: 1;
+          }
+        }
+
+        .h3 {
+          @include h3;
+        }
+
+        .slider-text {
+          @include medium;
+          text-align: center;
+        }
+      }
+
+      .controls {
+        @include flex-center;
+        gap: 0.75rem;
+
+        .control {
+          width: 2.5rem;
+          height: 0.25rem;
+          background-color: v.$border;
+          border-radius: 1rem;
+          transition: background-color 0.2s ease-in-out;
+          @include theme(background-color, v.$border, v.$border-dark);
+        }
+
+        .active {
+          @include theme(
+            background-color,
+            v.$border-inverse,
+            v.$border-inverse-dark
+          );
+        }
+      }
+
+      @include mobile-l {
+        .slider-inner {
+          @include flex-center;
+          .arrow {
+            position: absolute;
+            opacity: 0;
+            height: 100%;
+            width: 30%;
+            border-radius: 0;
+            z-index: 1;
+          }
+          .prev {
+            left: -1rem;
+          }
+          .next {
+            right: -1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes fade-left {
+  from {
+    opacity: 0;
+    transform: translateX(50dvw);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fade-right {
+  from {
+    opacity: 0;
+    transform: translateX(-50dvw);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fade-right-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(50dvw);
+  }
+}
+@keyframes fade-left-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50dvw);
+  }
+}
+
+.fade-right-out {
+  animation: fade-right-out 0.5s ease-out both;
+}
+.fade-left-out {
+  animation: fade-left-out 0.5s ease-out both;
+}
+.fade-left {
+  animation: fade-left 0.5s ease-out both;
+}
+.fade-right {
+  animation: fade-right 0.5s ease-out both;
+}

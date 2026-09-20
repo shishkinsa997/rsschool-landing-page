@@ -1,0 +1,135 @@
+@use "_variables.scss" as v;
+@use "_mixins.scss" as *;
+
+.footer {
+  @include container;
+  @include flex-center;
+  text-wrap: nowrap;
+
+  .footer-inner {
+    @include flex-center;
+    background-color: v.$container;
+    border-radius: 2.5rem;
+    padding: 6.25rem 6.25rem;
+    color: v.$inverse;
+    width: 100%;
+    gap: 6.25rem;
+    @include theme(background-color, v.$container, v.$container-dark);
+
+    .offer {
+      @include flex-column;
+      align-items: start;
+      width: 100%;
+      gap: 2.5rem;
+      border-radius: 1.25rem;
+      transition: color 0.2s ease-in-out;
+
+      .offer__title1 {
+        @include h2;
+        @include mobile-l {
+          @include h2-mobile;
+        }
+      }
+
+      .offer__title2 {
+        @include h2;
+        @include italic;
+        color: v.$accent;
+        @include mobile-l {
+          @include h2-mobile;
+        }
+      }
+
+      .socials {
+        @include flex-center;
+        gap: 0.75rem;
+
+        a {
+          @include flex-center;
+          align-items: center;
+          border: 0.1rem v.$border solid;
+          border-radius: 100%;
+          width: 3.75rem;
+          height: 3.75rem;
+          transition: background-color 0.2s ease-in-out;
+          @include theme(
+            border,
+            0.1rem v.$border solid,
+            0.1rem v.$border-dark solid
+          );
+
+          @include hover {
+            background-color: v.$page-dark;
+          }
+        }
+
+        img {
+          margin: auto;
+
+          width: 1.5rem;
+          aspect-ratio: 1/1;
+        }
+      }
+    }
+
+    .contacts-info {
+      @include flex-column;
+      width: 100%;
+      align-items: start;
+      gap: 2.5rem;
+
+      .contacts-title {
+        @include h3;
+      }
+
+      .contacts {
+        @include flex-column;
+        align-items: start;
+        gap: 1rem;
+
+        a {
+          position: relative;
+          @include link;
+          display: flex;
+          gap: 0.25rem;
+
+          &::after {
+            position: absolute;
+            content: "";
+            left: 0;
+            bottom: -0.25rem;
+            width: 0;
+            height: 0.125rem;
+            transition: width 0.2s ease-in-out;
+            @include theme(background-color, v.$inverse, v.$inverse-dark);
+          }
+
+          @include hover {
+            &::after {
+              width: 100%;
+            }
+          }
+        }
+
+        a {
+        }
+      }
+    }
+
+    @include tablet-l {
+      flex-direction: column;
+      padding: 6.25rem 3.75rem;
+      gap: 3.125rem;
+    }
+
+    @include mobile-l {
+      flex-direction: column;
+      padding: 3.75rem 1rem;
+      gap: 2.5rem;
+    }
+  }
+}
+
+.caption {
+  @include caption;
+}

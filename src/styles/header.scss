@@ -1,0 +1,273 @@
+@use "_variables.scss" as v;
+@use "_mixins.scss" as *;
+
+.header {
+  @include container;
+  @include flex-center;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  .header-inner {
+    display: flex;
+    gap: 0.75rem;
+    height: 3.75rem;
+    width: 100%;
+  }
+
+  .logo-wrapper {
+    @include flex-between;
+  }
+
+  .logo {
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 0.75rem;
+    height: 3.75rem;
+    width: 100%;
+
+    a {
+      position: relative;
+      &::after {
+        position: absolute;
+        content: "";
+        left: 0;
+        bottom: -0.25rem;
+        width: 0;
+        height: 0.125rem;
+        transition: width 0.2s ease-in-out;
+        @include theme(background-color, v.$primary, v.$primary-dark);
+      }
+
+      @include hover {
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+
+    ul {
+      @include flex-center;
+      @include link;
+      gap: 2.5rem;
+      flex: 1;
+    }
+
+    .burger-label {
+      order: 1;
+      display: none;
+      cursor: pointer;
+    }
+
+    #burger-toggle {
+      display: none;
+    }
+
+    .menu {
+      @include flex-center;
+      @include link;
+      gap: 0.5rem;
+
+      svg path {
+        @include theme(stroke, v.$primary, v.$primary-dark);
+      }
+    }
+
+    @include tablet-l {
+      .burger-label {
+        position: relative;
+        display: block;
+        height: 2.75rem;
+        width: 2.75rem;
+        border-radius: 100%;
+        @include theme(
+          border,
+          0.1rem solid v.$border-inverse,
+          0.1rem solid v.$border-inverse-dark
+        );
+      }
+
+      .burger-label::after,
+      .burger-label::before {
+        position: absolute;
+        width: 50%;
+        height: 0.1rem;
+        left: 50%;
+        transition: 0.5s;
+        border-radius: 1rem;
+        @include theme(background-color, v.$primary, v.$primary-dark);
+      }
+
+      .burger-label::before {
+        content: "";
+        top: 1rem;
+        transform: translateX(-50%);
+      }
+
+      .burger-label::after {
+        content: "";
+        bottom: 1rem;
+        transform: translateX(-50%);
+      }
+
+      #burger-toggle:checked ~ .burger-label::after {
+        bottom: 50%;
+        transform: translate(-50%, 50%) rotate(-405deg);
+      }
+
+      #burger-toggle:checked ~ .burger-label::before {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(405deg);
+      }
+
+      ul {
+        @include burger;
+        position: fixed;
+        visibility: hidden;
+        gap: 3.75rem;
+        top: 0;
+        right: -100dvw;
+        z-index: -1;
+        flex-direction: column;
+        justify-content: start;
+        text-align: center;
+        width: 100dvw;
+        height: calc(100dvh - 6.25rem);
+        margin-top: 6.25rem;
+        padding-top: 10dvh;
+        transition:
+          right 0.5s ease-in-out,
+          visibility 0s linear 0.5s;
+        @include theme(background-color, v.$page, v.$page-dark);
+
+        &::before {
+          position: fixed;
+          content: "";
+          right: -100dvw;
+          top: 0;
+          z-index: -1;
+          height: 100dvh;
+          width: 100dvw;
+          transition:
+            right 0.5s ease-in-out,
+            visibility 0s linear;
+        }
+      }
+
+      .menu {
+        @include burger;
+        position: fixed;
+        visibility: hidden;
+        top: 0;
+        right: -100dvw;
+        z-index: -1;
+        justify-content: center;
+        text-align: start;
+        width: 100dvw;
+        margin-top: 33.75rem;
+        padding-top: 10dvh;
+
+        transition:
+          right 0.5s ease-in-out,
+          visibility 0s linear 0.5s;
+
+        svg {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+      }
+
+      #burger-toggle:checked ~ ul,
+      #burger-toggle:checked ~ .menu {
+        visibility: visible;
+        right: 0;
+        transition:
+          right 0.5s ease-in-out,
+          visibility 0s linear;
+      }
+
+      #burger-toggle:checked ~ ul::before {
+        visibility: visible;
+        right: 0;
+        transition:
+          right 0.5s ease-in-out,
+          visibility 0s linear;
+      }
+    }
+  }
+}
+
+.theme-toggle {
+  padding: 0.5rem;
+  .theme-input {
+    opacity: 0;
+    position: absolute;
+  }
+
+  .theme-label {
+    @include flex-between;
+    width: 100%;
+    height: 44px;
+    border-radius: 100px;
+    border: 0.1rem solid v.$border;
+    position: relative;
+    padding: 0.25rem;
+    gap: 0.5rem;
+    cursor: pointer;
+
+    div {
+      @include flex-center;
+      border-radius: 100%;
+      width: 2.25rem;
+      aspect-ratio: 1/1;
+      transition: background-color 0.2s ease-in-out;
+
+      svg {
+        margin: auto;
+      }
+    }
+
+    .theme-moon {
+      @include theme(background, #00000000, v.$accent-dark);
+      @media (hover: hover) and (min-width: 769px) {
+        &:hover {
+          background-color: v.$border-dark;
+
+          & svg path {
+            fill: v.$inverse;
+          }
+        }
+      }
+
+      svg path {
+        @include theme(fill, v.$primary, v.$inverse-dark);
+        transition: fill 0.2s ease-in-out;
+      }
+    }
+
+    .theme-sun {
+      @include theme(background, v.$accent, #00000000);
+      @media (hover: hover) and (min-width: 769px) {
+        &:hover {
+          @include theme(background, v.$accent, v.$border-inverse-dark);
+
+          & svg path {
+            @include theme(fill, #00000000, v.$primary);
+            fill: v.$inverse;
+          }
+        }
+      }
+
+      svg path {
+        transition: fill 0.2s ease-in-out;
+      }
+    }
+  }
+}
