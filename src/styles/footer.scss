@@ -88,9 +88,30 @@
         gap: 1rem;
 
         a {
+          position: relative;
           @include link;
           display: flex;
           gap: 0.25rem;
+
+          &::after {
+            position: absolute;
+            content: "";
+            left: 0;
+            bottom: -0.25rem;
+            width: 0;
+            height: 0.125rem;
+            transition: width 0.2s ease-in-out;
+            @include theme(background-color, v.$inverse, v.$inverse-dark);
+          }
+
+          @include hover {
+            &::after {
+              width: 100%;
+            }
+          }
+        }
+
+        a {
         }
       }
     }

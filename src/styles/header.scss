@@ -33,22 +33,31 @@
     height: 3.75rem;
     width: 100%;
 
-    ul {
-      @include flex-center;
-      gap: 2.5rem;
-      flex: 1;
-      @include link;
+    a {
+      position: relative;
+      &::after {
+        position: absolute;
+        content: "";
+        left: 0;
+        bottom: -0.25rem;
+        width: 0;
+        height: 0.125rem;
+        transition: width 0.2s ease-in-out;
+        @include theme(background-color, v.$primary, v.$primary-dark);
+      }
 
-      a {
-        transition:
-          color 0.2s ease-in-out,
-          background-color 0.2s ease-in-out;
-
-        @include hover {
-          // color: v.$primary;
-          // background-color: v.$primary-10;
+      @include hover {
+        &::after {
+          width: 100%;
         }
       }
+    }
+
+    ul {
+      @include flex-center;
+      @include link;
+      gap: 2.5rem;
+      flex: 1;
     }
 
     .burger-label {

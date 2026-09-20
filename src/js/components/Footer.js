@@ -36,7 +36,7 @@ export function renderFooter() {
               <img src="${iconPaths["phone"]}" alt="pin-alt">
               <span class="contact-item__title">+1 (603) 555-0123</span>
             </a></li>
-            <li><a class="contact-item" href="">
+            <li><a class="contact-item" href="#">
               <img src="${iconPaths["clock"]}" alt="pin-alt">
               <span class="contact-item__title">Mon–Sat: 9:00–23:00</span>
             </a></li>
