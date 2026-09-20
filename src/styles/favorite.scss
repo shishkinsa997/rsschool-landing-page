@@ -29,6 +29,7 @@
 
       .slider-inner {
         @include flex-between;
+        position: relative;
         width: 100%;
         gap: 2.5rem;
 
@@ -144,11 +145,22 @@
       }
 
       @include mobile-l {
-        .arrow {
-          display: none !important;
-        }
         .slider-inner {
           @include flex-center;
+          .arrow {
+            position: absolute;
+            opacity: 0;
+            height: 100%;
+            width: 30%;
+            border-radius: 0;
+            z-index: 1;
+          }
+          .prev {
+            left: -1rem;
+          }
+          .next {
+            right: -1rem;
+          }
         }
       }
     }
