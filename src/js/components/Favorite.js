@@ -54,13 +54,15 @@ export function renderFavorite() {
     row.append(slide);
   });
 
+  row.querySelector(".slide").className += " active";
+
   favorite.innerHTML = `
     <div class="favorite-inner">
       <h2 class="h2">Choose your <span>favorite</span> coffee</h2>
       <div class="slider">
         <div class="slider-inner">
-          <button class="arrow prev">${arrowLeft}</button>
-          <button class="arrow next">${arrowRight}</button>
+          <button class="arrow prev" data-direction="left">${arrowLeft}</button>
+          <button class="arrow next" data-direction="right">${arrowRight}</button>
         </div>
         <div class="controls">
           <div class="control active"></div>
@@ -73,15 +75,17 @@ export function renderFavorite() {
 
   let slideIndex = 1;
 
-  const plusSlides = (n) => {
-    showSlides((slideIndex += n));
+  const plusSlides = (n, dir) => {
+    showSlides((slideIndex += n), dir);
   };
 
-  function showSlides(n) {
+  function showSlides(n, dir) {
     let i;
     let slides = document.querySelectorAll(".slide");
     let controls = document.querySelectorAll(".control");
-    console.log(slides);
+    let active = document.querySelector(".active");
+
+    active.classList.add("fade-" + dir + "-out");
 
     if (n > slides.length) {
       slideIndex = 1;
@@ -90,23 +94,29 @@ export function renderFavorite() {
       slideIndex = slides.length;
     }
     for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    for (i = 0; i < controls.length; i++) {
+      slides[i].classList.remove("fade-left", "fade-right");
+      slides[i].className = slides[i].className.replace(" active", "");
       controls[i].className = controls[i].className.replace(" active", "");
     }
-    slides[slideIndex - 1].style.display = "block";
+    slides[slideIndex - 1].classList.add("fade-" + dir);
+    slides[slideIndex - 1].className += " active";
     controls[slideIndex - 1].className += " active";
+
+    setTimeout(() => {
+      for (i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("fade-right-out", "fade-left-out");
+      }
+    }, 500);
   }
 
   const prev = favorite.querySelector(".prev");
   const next = favorite.querySelector(".next");
 
   prev.addEventListener("click", () => {
-    plusSlides(-1);
+    plusSlides(-1, "left");
   });
   next.addEventListener("click", () => {
-    plusSlides(1);
+    plusSlides(1, "right");
   });
 
   const sliderInner = favorite.querySelector(".slider-inner");
