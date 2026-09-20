@@ -1,0 +1,203 @@
+@use "_variables.scss" as v;
+@use "_mixins.scss" as *;
+
+#overlay {
+  position: fixed;
+  @include flex-center;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100dvw;
+  height: 100dvh;
+  transition: opacity 0.2s ease-in-out;
+  padding: 2.5rem;
+  @include theme(background-color, v.$overlay, v.$overlay-dark);
+
+  .modal {
+    @include flex-between;
+    align-items: start;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 50rem;
+    border-radius: 2.5rem;
+    padding: 1rem;
+    transition: opacity 0.2s ease-in-out;
+    @include theme(background-color, v.$primary-dark, v.$primary);
+
+    p {
+      @include medium;
+    }
+
+    .modal-img {
+      width: 20rem;
+      aspect-ratio: 1/1;
+      border-radius: 2.5rem;
+
+      img {
+        width: 20rem;
+        aspect-ratio: 1/1;
+        border-radius: 2.5rem;
+      }
+    }
+
+    .modal-content {
+      @include flex-column;
+      align-items: start;
+      text-align: left;
+      gap: 1.25rem;
+
+      .modal-title {
+        @include flex-column;
+        align-items: start;
+        gap: 0.75rem;
+
+        .h3 {
+          @include h3;
+          align-items: left;
+        }
+      }
+
+      .modal-sizes,
+      .modal-adds {
+        @include flex-column;
+        align-items: start;
+        gap: 0.5rem;
+      }
+
+      .modal-tabs {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+
+        .modal-tab {
+          @include flex-center;
+          gap: 0.5rem;
+          padding: 0.5rem 1rem 0.5rem 0.5rem;
+          border-radius: 8rem;
+          transition: all 0.2s ease-in-out;
+
+          @include theme(
+            border,
+            0.1rem solid v.$border,
+            0.1rem solid v.$border-dark
+          );
+
+          @include hover {
+            @include theme(
+              border,
+              0.1rem solid v.$container,
+              0.1rem solid v.$container-dark
+            );
+            @include theme(background-color, v.$container, v.$page-dark);
+            .modal-size_icon,
+            .modal-add_icon {
+              @include theme(background-color, v.$primary-dark, v.$primary);
+            }
+
+            .modal-size_text,
+            .modal-add_text {
+              @include theme(color, v.$inverse-dark, v.$inverse);
+            }
+          }
+        }
+
+        .modal-size_icon,
+        .modal-add_icon {
+          @include flex-center;
+          width: 1.9rem;
+          aspect-ratio: 1/1;
+          border-radius: 100%;
+          @include theme(background-color, v.$border, v.$border-dark);
+        }
+
+        .active {
+          @include theme(
+            border,
+            0.1rem solid v.$container,
+            0.1rem solid v.$container-dark
+          );
+          @include theme(background-color, v.$container, v.$page-dark);
+
+          .modal-size_icon,
+          .modal-add_icon {
+            @include theme(background-color, v.$primary-dark, v.$primary);
+          }
+
+          .modal-size_text,
+          .modal-add_text {
+            @include theme(color, v.$inverse-dark, v.$inverse);
+          }
+        }
+      }
+
+      .modal-total {
+        width: 100%;
+        @include flex-between;
+        @include h3;
+      }
+
+      .modal-banner {
+        @include caption;
+        position: relative;
+        padding: 0.75rem 0 0.75rem 1.5rem;
+        text-align: start;
+        height: 3.3rem;
+
+        .info-icon {
+          position: absolute;
+          width: 1rem;
+          left: 0;
+          top: 0.75rem;
+          aspect-ratio: 1/1;
+
+          path {
+            @include theme(stroke, v.$primary, v.$primary-dark);
+          }
+        }
+
+        &::before {
+          position: absolute;
+          content: "";
+          width: 100%;
+          height: 0.1rem;
+          top: 0;
+          left: 0;
+
+          @include theme(background-color, v.$border, v.$border-dark);
+        }
+      }
+      .close-btn {
+        @include link;
+        @include flex-center;
+        box-sizing: border-box;
+        border-radius: 8rem;
+        width: 100%;
+        padding: 0.6rem 7rem;
+        transition: all 0.2s ease-in-out;
+
+        @include theme(
+          border,
+          0.1rem solid v.$border,
+          0.1rem solid v.$border-dark
+        );
+
+        @include hover {
+          @include theme(
+            border,
+            0.1rem solid v.$border-dark,
+            0.1rem solid v.$border
+          );
+          @include theme(background-color, v.$border-dark, v.$border);
+          @include theme(color, v.$primary-dark, v.$primary);
+        }
+      }
+    }
+  }
+
+  @include mobile-l {
+    padding: 1.25rem;
+    .modal-img {
+      display: none;
+    }
+  }
+}

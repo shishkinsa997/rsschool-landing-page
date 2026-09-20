@@ -1,4 +1,5 @@
 import { imagePaths } from "../images";
+import { renderOverlay } from "./Overlay.js";
 
 export function renderCard(data, index) {
   const cardItem = document.createElement("a");
@@ -29,6 +30,10 @@ export function renderCard(data, index) {
   cardText.append(cardTitle, cardDesc, cardPrice);
   cardImageWrapper.append(cardImage);
   cardItem.append(cardImageWrapper, cardText);
+
+  cardItem.addEventListener("click", () => {
+    renderOverlay(data, index);
+  });
 
   return cardItem;
 }
