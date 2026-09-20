@@ -19,15 +19,15 @@ export function renderMenu() {
       <div class="offer">
         <h1 class="h2">Behind each of our cups hides an <span>amazing surprise</span></h1>
         <div class="tabs">
-          <button class="tab active">
+          <button class="tab active"data-link="coffee">
             <img src="${iconPaths["coffee"]}" alt="coffee">
             <span class="tab-title">Coffee</span>
           </button>
-          <button class="tab">
-            <img src="${iconPaths["tea"]}" alt="tea">
+          <button class="tab" data-link="tea">
+            <img src="${iconPaths["tea"]}"  alt="tea">
             <span class="tab-title">Tea</span>
           </button>
-          <button class="tab">
+          <button class="tab" data-link="dessert">
             <img src="${iconPaths["dessert"]}" alt="dessert">
             <span class="tab-title">Dessert</span>
           </button>
@@ -41,12 +41,69 @@ export function renderMenu() {
     </div>
   `;
 
-  const coffee = products.filter((product) => product.category === "coffee");
-  const grid = menu.querySelector(".grid");
+  let tabName = "coffee";
+  let amount = 10;
 
-  coffee.forEach((x, i) => {
-    grid.append(renderCard(x, i + 1));
+  const tabs = menu.querySelectorAll(".tab");
+  const more = menu.querySelector(".refresh");
+
+  const showMore = () => {
+    amount += 2;
+    renderGrid(tabName, amount);
+  };
+
+  const renderGrid = (category, amount) => {
+    const grid = menu.querySelector(".grid");
+
+    grid.innerHTML = "";
+    const filteredProducts = products.filter(
+      (product) => product.category === category,
+    );
+    filteredProducts.slice(0, amount).forEach((x, i) => {
+      grid.append(renderCard(x, i + 1));
+    });
+
+    if (amount >= filteredProducts.length) {
+      more.style.display = "none";
+    } else {
+      more.style.display = "flex";
+    }
+  };
+
+  const hideMore = () => {
+    if (window.innerWidth < 1024) {
+      more.style.display = "flex";
+      amount = 4;
+      return true;
+    } else {
+      more.style.display = "none";
+      amount = 10;
+      return false;
+    }
+  };
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      hideMore();
+
+      renderGrid(tab.getAttribute("data-link"), amount);
+      tabName = tab.getAttribute("data-link");
+      tabs.forEach((tab) => {
+        tab.classList.remove("active");
+      });
+      tab.classList.add("active");
+    });
   });
+
+  more.addEventListener("click", () => {
+    showMore();
+  });
+
+  window.addEventListener("resize", () => {
+    hideMore();
+  });
+  hideMore();
+  renderGrid(tabName, amount);
 
   return menu;
 }
