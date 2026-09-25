@@ -113,10 +113,10 @@ export function renderFavorite() {
   const next = favorite.querySelector(".next");
 
   prev.addEventListener("click", () => {
-    plusSlides(-1, "left");
+    plusSlides(-1, "right");
   });
   next.addEventListener("click", () => {
-    plusSlides(1, "right");
+    plusSlides(1, "left");
   });
 
   const sliderInner = favorite.querySelector(".slider-inner");
