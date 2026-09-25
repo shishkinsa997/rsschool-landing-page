@@ -117,7 +117,8 @@ function initOverlay(data, index) {
         price += +tab.getAttribute("data-price");
         tab.classList.add("active");
       }
-      priceTotal.textContent = `$${price.toFixed(2)}`;
+      priceTotal.textContent = `$${(price + sizePrise).toFixed(2)}`;
+      console.log(price);
     });
   });
 
