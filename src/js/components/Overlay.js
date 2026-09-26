@@ -86,8 +86,6 @@ function initOverlay(data, index) {
   const addTabs = modal.querySelectorAll(".modal-add");
   const priceTotal = modal.querySelector(".price-total");
 
-  console.log(sizeTabs);
-
   overlay.id = "overlay";
 
   modal.style.opacity = "0.5";
@@ -118,7 +116,6 @@ function initOverlay(data, index) {
         tab.classList.add("active");
       }
       priceTotal.textContent = `$${(price + sizePrise).toFixed(2)}`;
-      console.log(price);
     });
   });
 

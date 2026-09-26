@@ -130,9 +130,7 @@ function renderHeader() {
     <img src="${logo}" alt="logo" class="logo"/>`;
       localStorage.setItem("theme", "light");
     }
-    console.log("theme:", localStorage.getItem("theme"));
   });
-  console.log("theme:", localStorage.getItem("theme"));
 
   return header;
 }
