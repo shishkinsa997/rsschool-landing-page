@@ -84,20 +84,26 @@ function renderHeader() {
     document.documentElement.style.overflow = "auto";
   };
 
+  const closeModal = () => {
+    burgerToggle.checked = false;
+    burgerClose();
+    document.removeEventListener("keydown", closeModal);
+  };
+
   burgerToggle.addEventListener("change", () => {
     if (burgerToggle.checked) {
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
       burgerOpen();
     } else {
-      burgerClose();
+      closeModal();
     }
   });
 
   [liFav, liAbout, liMobile, liContacts].forEach((li) => {
     li.addEventListener("click", () => {
-      if (burgerToggle.checked) {
-        burgerToggle.checked = false;
-        burgerClose();
-      }
+      if (burgerToggle.checked) closeModal();
     });
   });
 
