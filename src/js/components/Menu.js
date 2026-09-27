@@ -48,7 +48,7 @@ export function renderMenu() {
   const more = menu.querySelector(".refresh");
 
   const showMore = () => {
-    amount += 2;
+    amount += 4;
     renderGrid(tabName, amount);
   };
 

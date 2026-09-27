@@ -98,6 +98,16 @@ function initOverlay(data, index) {
 
   overlay.append(modal);
 
+  const closeModal = () => {
+    document.documentElement.style.overflow = "auto";
+    document.removeEventListener("keydown", handleEsc);
+    overlay.remove();
+  };
+
+  const handleEsc = (e) => {
+    if (e.key === "Escape") closeModal();
+  };
+
   sizeTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       sizePrise = +tab.getAttribute("data-price");
@@ -119,17 +129,15 @@ function initOverlay(data, index) {
     });
   });
 
-  close.addEventListener("click", () => {
-    document.documentElement.style.overflow = "auto";
-    overlay.remove();
-  });
+  close.addEventListener("click", closeModal);
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) {
       e.stopPropagation();
-      document.documentElement.style.overflow = "auto";
-      overlay.remove();
+      closeModal();
     }
   });
+
+  document.addEventListener("keydown", handleEsc);
 
   return overlay;
 }
