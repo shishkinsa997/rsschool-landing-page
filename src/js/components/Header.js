@@ -87,14 +87,16 @@ function renderHeader() {
   const closeModal = () => {
     burgerToggle.checked = false;
     burgerClose();
-    document.removeEventListener("keydown", closeModal);
+    document.removeEventListener("keydown", handleEsc);
+  };
+
+  const handleEsc = (e) => {
+    if (e.key === "Escape") closeModal();
   };
 
   burgerToggle.addEventListener("change", () => {
     if (burgerToggle.checked) {
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeModal();
-      });
+      document.addEventListener("keydown", handleEsc);
       burgerOpen();
     } else {
       closeModal();
