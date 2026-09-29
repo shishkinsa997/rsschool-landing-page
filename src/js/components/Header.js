@@ -84,20 +84,28 @@ function renderHeader() {
     document.documentElement.style.overflow = "auto";
   };
 
+  const closeModal = () => {
+    burgerToggle.checked = false;
+    burgerClose();
+    document.removeEventListener("keydown", handleEsc);
+  };
+
+  const handleEsc = (e) => {
+    if (e.key === "Escape") closeModal();
+  };
+
   burgerToggle.addEventListener("change", () => {
     if (burgerToggle.checked) {
+      document.addEventListener("keydown", handleEsc);
       burgerOpen();
     } else {
-      burgerClose();
+      closeModal();
     }
   });
 
   [liFav, liAbout, liMobile, liContacts].forEach((li) => {
     li.addEventListener("click", () => {
-      if (burgerToggle.checked) {
-        burgerToggle.checked = false;
-        burgerClose();
-      }
+      if (burgerToggle.checked) closeModal();
     });
   });
 
@@ -130,9 +138,15 @@ function renderHeader() {
     <img src="${logo}" alt="logo" class="logo"/>`;
       localStorage.setItem("theme", "light");
     }
-    console.log("theme:", localStorage.getItem("theme"));
   });
-  console.log("theme:", localStorage.getItem("theme"));
+  console.log(document.documentElement);
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      burgerClose();
+      burgerToggle.checked = false;
+    }
+  });
 
   return header;
 }

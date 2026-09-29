@@ -40,15 +40,20 @@ export function renderMenu() {
       <button class="refresh">${refreshIcon}</button>
     </div>
   `;
-
+  const STEP = 4;
   let tabName = "coffee";
   let amount = 10;
+  let clicks = 0;
 
   const tabs = menu.querySelectorAll(".tab");
   const more = menu.querySelector(".refresh");
 
+  const isTablet = () => window.innerWidth <= 1024;
+  const getBaseAmount = () => (isTablet() ? 4 : 10);
+
   const showMore = () => {
-    amount += 2;
+    clicks++;
+    amount = getBaseAmount() + clicks * STEP;
     renderGrid(tabName, amount);
   };
 
@@ -70,28 +75,18 @@ export function renderMenu() {
     }
   };
 
-  const hideMore = () => {
-    if (window.innerWidth < 1024) {
-      more.style.display = "flex";
-      amount = 4;
-      return true;
-    } else {
-      more.style.display = "none";
-      amount = 10;
-      return false;
-    }
-  };
-
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      hideMore();
-
-      renderGrid(tab.getAttribute("data-link"), amount);
       tabName = tab.getAttribute("data-link");
+      clicks = 0;
+      amount = getBaseAmount();
+
       tabs.forEach((tab) => {
         tab.classList.remove("active");
       });
       tab.classList.add("active");
+
+      renderGrid(tabName, amount);
     });
   });
 
@@ -100,9 +95,10 @@ export function renderMenu() {
   });
 
   window.addEventListener("resize", () => {
-    hideMore();
+    amount = getBaseAmount() + clicks * STEP;
+    renderGrid(tabName, amount);
   });
-  hideMore();
+  amount = getBaseAmount() + clicks * STEP;
   renderGrid(tabName, amount);
 
   return menu;

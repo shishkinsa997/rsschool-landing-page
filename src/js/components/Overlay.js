@@ -54,15 +54,15 @@ function initOverlay(data, index) {
         <div class="modal-tabs">
           <button class="modal-tab modal-add" data-price=${data.additives[0]["add-price"]}>
             <span class="modal-add_icon">1</span>
-            <span class="modal-add_text">Sugar</span>
+            <span class="modal-add_text">${data.additives[0].name}</span>
           </button>
           <button class="modal-tab modal-add" data-price=${data.additives[1]["add-price"]}>
             <span class="modal-add_icon">2</span>
-            <span class="modal-add_text">Cinnamon</span>
+            <span class="modal-add_text">${data.additives[1].name}</span>
           </button>
           <button class="modal-tab modal-add" data-price=${data.additives[2]["add-price"]}>
             <span class="modal-add_icon">3</span>
-            <span class="modal-add_text">Syrup</span>
+            <span class="modal-add_text">${data.additives[2].name}</span>
           </button>
         </div>
       </div>
@@ -86,8 +86,6 @@ function initOverlay(data, index) {
   const addTabs = modal.querySelectorAll(".modal-add");
   const priceTotal = modal.querySelector(".price-total");
 
-  console.log(sizeTabs);
-
   overlay.id = "overlay";
 
   modal.style.opacity = "0.5";
@@ -99,6 +97,16 @@ function initOverlay(data, index) {
   }, 0);
 
   overlay.append(modal);
+
+  const closeModal = () => {
+    document.documentElement.style.overflow = "auto";
+    document.removeEventListener("keydown", handleEsc);
+    overlay.remove();
+  };
+
+  const handleEsc = (e) => {
+    if (e.key === "Escape") closeModal();
+  };
 
   sizeTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
@@ -117,21 +125,19 @@ function initOverlay(data, index) {
         price += +tab.getAttribute("data-price");
         tab.classList.add("active");
       }
-      priceTotal.textContent = `$${price.toFixed(2)}`;
+      priceTotal.textContent = `$${(price + sizePrise).toFixed(2)}`;
     });
   });
 
-  close.addEventListener("click", () => {
-    document.documentElement.style.overflow = "auto";
-    overlay.remove();
-  });
+  close.addEventListener("click", closeModal);
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) {
       e.stopPropagation();
-      document.documentElement.style.overflow = "auto";
-      overlay.remove();
+      closeModal();
     }
   });
+
+  document.addEventListener("keydown", handleEsc);
 
   return overlay;
 }
