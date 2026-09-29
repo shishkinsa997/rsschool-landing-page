@@ -139,6 +139,14 @@ function renderHeader() {
       localStorage.setItem("theme", "light");
     }
   });
+  console.log(document.documentElement);
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      burgerClose();
+      burgerToggle.checked = false;
+    }
+  });
 
   return header;
 }

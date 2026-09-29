@@ -81,6 +81,12 @@
     }
 
     @include tablet-l {
+      ul {
+        gap: 1.5rem;
+      }
+    }
+
+    @include tablet {
       .burger-label {
         position: relative;
         display: block;
