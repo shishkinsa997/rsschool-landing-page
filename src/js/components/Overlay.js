@@ -54,15 +54,15 @@ function initOverlay(data, index) {
         <div class="modal-tabs">
           <button class="modal-tab modal-add" data-price=${data.additives[0]["add-price"]}>
             <span class="modal-add_icon">1</span>
-            <span class="modal-add_text">Sugar</span>
+            <span class="modal-add_text">${data.additives[0].name}</span>
           </button>
           <button class="modal-tab modal-add" data-price=${data.additives[1]["add-price"]}>
             <span class="modal-add_icon">2</span>
-            <span class="modal-add_text">Cinnamon</span>
+            <span class="modal-add_text">${data.additives[1].name}</span>
           </button>
           <button class="modal-tab modal-add" data-price=${data.additives[2]["add-price"]}>
             <span class="modal-add_icon">3</span>
-            <span class="modal-add_text">Syrup</span>
+            <span class="modal-add_text">${data.additives[2].name}</span>
           </button>
         </div>
       </div>
